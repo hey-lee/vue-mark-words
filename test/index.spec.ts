@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import MarkWords from '..'
+import MarkWords from '../src'
 
 describe('MarkWords Component', () => {
   // Test default text prop
@@ -31,6 +31,19 @@ describe('MarkWords Component', () => {
   })
 
   // Test classNames prop
+  it('should apply defalut classNames', () => {
+    const wrapper = mount(MarkWords, {
+      props: {
+        text: 'Hello World',
+        words: ['Hello'],
+      }
+    })
+    
+    expect(wrapper.find('.mark-words-container').exists()).toBe(true)
+    expect(wrapper.find('.marked').exists()).toBe(true)
+    expect(wrapper.find('.unmarked').exists()).toBe(true)
+  })
+
   it('should apply custom classNames', () => {
     const wrapper = mount(MarkWords, {
       props: {
